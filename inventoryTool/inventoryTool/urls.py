@@ -21,9 +21,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('getProducts/',views.getProducts,name="getProducts"),
-    path('getUnits/',views.getUnits,name="getUnits"),
-    path('getStatus/',views.getStatus,name="getStatus"),
+    path('getUnits/<pid>/',views.getUnits,name="getUnits"),
+    path('getStatus/<pid>/',views.getStatus,name="getStatus"),
     path('addProducts/',views.addProduct,name="addProduct"),
     path('addUnits/',views.addUnits,name="addUnits"),
-    path('addStatus',views.addStatus,name="addStatus")
+    path('addStatus/',views.addStatus,name="addStatus")
 ]

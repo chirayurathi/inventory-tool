@@ -1,0 +1,99 @@
+.ProductList{
+    position: relative;
+    height: 86vh;
+    overflow: hidden;
+}
+.ProductList .Heads{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    align-items: center;
+    height: 7vh;
+    position: absolute;
+    top: 7vh;
+    left: 0;
+    box-shadow: 0px 0px 5px 0px rgb(204, 204, 204);
+}
+.Head{
+    display: flex;
+    padding: 0 30px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+}
+.Head h1{
+    padding: 0;
+    margin: 0;
+}
+.Head div{
+    width: 75px;
+}
+.Head button{
+    background-color: white;
+    outline: none;
+    border: 2px solid rgb(9, 163, 9);
+    color:rgb(9, 163, 9);
+    padding: 0 13px;
+    border-radius: 7px;
+    height: 70%;
+    font-family: 'Poppins',sans-serif;
+    transition: 0.5s;
+}
+.Head button:hover{
+    background-color: rgb(9, 163, 9);
+    color: white;
+    box-shadow: 0px 0px 5px 0px rgb(9, 163, 9);
+}
+
+.Heads li{
+    text-align: center;
+    width: 25%;
+    font-weight: 700;
+}
+.List{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    /* display: flex; */
+    list-style: none;
+    /* justify-content: space-around; */
+    /* align-items: center; */
+    height: 79vh;
+    overflow: auto;
+    margin-top: 14vh;
+}
+.Element{
+    width: 100%;
+    height: 9vh;
+    text-align: center;
+    border-bottom: 1px solid rgb(206, 204, 204);
+    transition: 0.5s;
+}
+.Element:hover{
+    background-color: rgb(248, 245, 245);
+}
+.Head{
+    width: 100%;
+    height: 7vh;
+    box-shadow: 0px 0px 5px gray;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.Element ul{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.Element ul > li{
+    width: 25%;
+    text-align: center;
+}

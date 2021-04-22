@@ -24,34 +24,41 @@ def addProduct(request):
     else:
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
-def getUnits(request):
-    product = Product.objects.get(pk=request.POST.get("product_id"))
-    productUnits = ProductUnit.objects().filter(Product=product)
+def getUnits(request,pid):
+    product = Product.objects.get(pk=pid)
+    productUnits = ProductUnit.objects.filter(Product=product)
     serializer =  ProductUnitSerializer(productUnits,many=True)
-    return Response(serializer.data)
+    return JsonResponse(serializer.data,safe=False)
 
+@api_view(['POST'])
 @permission_classes((permissions.AllowAny,))
 def addUnits(request):
     serializer = ProductUnitSerializer(data=request.data)
-    if serializer.is_valid:
+    if serializer.is_valid():
         serializer.save()
+        uObj = serializer.save()
+        statusNew = StatusUpdate.objects.create(ProductUnit=uObj,from_location='IMPORTED',to_location=uObj.status,update_time=uObj.added_on)
+        statusNew.save()
         return Response(serializer.data,status=status.HTTP_201_CREATED)
     else:
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
-def getStatus(request):
-    productUnit = ProductUnit.objects.get(pk=request.POST.get("productunit_id"))
+def getStatus(request,pid):
+    productUnit = ProductUnit.objects.get(pk=pid)
     statusList = StatusUpdate.objects.filter(ProductUnit=productUnit)
     serializer = StatusUpdateSerializer(statusList,many=True)
-    return Response(serializer.data)
+    return JsonResponse(serializer.data,safe=False)
 
+@api_view(['POST'])
 @permission_classes((permissions.AllowAny,))
 def addStatus(request):
     serializer = StatusUpdateSerializer(data=request.data)
-    if serializer.is_valid:
+    if serializer.is_valid():
         serializer.save()
-        unit = ProductUnit.objects().get(pk=request.POST.get("ProductUnit_id"))
-        unit.status = serializer.data.to_location
+        stat = serializer.save()
+        unit = ProductUnit.objects.get(pk=stat.ProductUnit.barcode)
+        unit.status = stat.to_location
+        unit.shipped_on = stat.update_time
         unit.save()
         return Response(serializer.data,status=status.HTTP_201_CREATED)
     else:

@@ -1,0 +1,72 @@
+.Modal{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.541);
+    top:0;
+    left: 0;
+    z-index: 100;
+}
+.Form{
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top:0;
+    transform: translateX(100%);
+    background-color: white;
+    animation: enter 0.5s ease-in forwards ;
+    z-index: 10;
+    text-align: center;
+}
+.Form input,.Form select{
+    display: block;
+    width: 70%;
+    margin: 20px auto;
+    border-radius: 7px;
+    height: 50px;
+    /* border:1px solid gray; */
+    border:none;
+    box-shadow: 0px 0px 9px 0px rgba(189, 185, 185, 0.575);
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 30px;
+}
+.Form label{
+    margin-top: 60px;
+    display: block;
+}
+.Form h1{
+    margin: 30px auto;
+}
+.Backdrop{
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+}
+
+.Form button{
+    background-color: white;
+    outline: none;
+    border: 2px solid rgb(9, 163, 9);
+    color:rgb(9, 163, 9);
+    padding: 10px 23px;
+    margin: 20px auto;
+    border-radius: 7px;
+    font-family: 'Poppins',sans-serif;
+    transition: 0.5s;
+}
+.Form button:hover{
+    background-color: rgb(9, 163, 9);
+    color: white;
+    box-shadow: 0px 0px 5px 0px rgb(9, 163, 9);
+}
+
+@keyframes enter{
+    to{
+        transform: translateX(0);
+    }
+}
