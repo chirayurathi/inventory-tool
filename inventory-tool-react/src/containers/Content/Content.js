@@ -17,9 +17,11 @@ class Content extends Component{
             formOf:null,
             form:{
                 product:{
-                    product_id:0,
                     product_name:"",
-                    product_price:0
+                    processor:"",
+                    ram:"",
+                    operating_system:"",
+                    units:0
                 },
                 unit:{
                     barcode:0,
@@ -28,6 +30,8 @@ class Content extends Component{
                 status:{
                     from_location:"",
                     to_location:"",
+                    from_holder:"",
+                    to_holder:"",
                     remark:""
                 }
             }

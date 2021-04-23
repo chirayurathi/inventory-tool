@@ -12,7 +12,9 @@ const ProductList = (props) => {
             <ul className={Style.Heads}>
                 <li>Product Id</li>
                 <li>Product Name</li>
-                <li>Product Price</li>
+                <li>RAM</li>
+                <li>Processor</li>
+                <li>OS</li>
                 <li>Total Units</li>
             </ul>
             {props.allProducts?<ul className={Style.List}>
@@ -22,7 +24,9 @@ const ProductList = (props) => {
                         <ul>
                             <li>{element.product_id}</li>
                             <li>{element.product_name}</li>
-                            <li>{element.product_price}</li>
+                            <li>{element.ram}</li>
+                            <li>{element.processor}</li>
+                            <li>{element.operating_system}</li>
                             <li>{element.total_units}</li>
                         </ul> 
                   </li>) 

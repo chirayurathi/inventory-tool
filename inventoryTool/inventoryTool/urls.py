@@ -25,5 +25,6 @@ urlpatterns = [
     path('getStatus/<pid>/',views.getStatus,name="getStatus"),
     path('addProducts/',views.addProduct,name="addProduct"),
     path('addUnits/',views.addUnits,name="addUnits"),
-    path('addStatus/',views.addStatus,name="addStatus")
+    path('addStatus/',views.addStatus,name="addStatus"),
+    path('getEmployee',views.getEmployee,name="getEmployee")
 ]

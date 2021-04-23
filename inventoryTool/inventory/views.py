@@ -11,15 +11,26 @@ def getProducts(request):
     products = Product.objects.all()
     for product in products:
         product.total_units = ProductUnit.objects.filter(Product=product).count()
+        if product.total_units == '':
+            product.total_units = 0
     serializer = sendProductSerializer(products,many=True)
     return JsonResponse(serializer.data,safe=False)
 
 @api_view(['POST'])
 @permission_classes((permissions.AllowAny,))
 def addProduct(request):
-    serializer = ProductSerializer(data=request.data)
+    data = dict(request.data)
+    del data["units"]
+    serializer = ProductSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
+        product = serializer.save()
+        print(request.data)
+        for i in range(int(request.data["units"])):
+            newUnit = ProductUnit()
+            newUnit.Product = product
+            newUnit.status = 'CHENNAI'
+            newUnit.save()
         return Response(serializer.data,status=status.HTTP_201_CREATED)
     else:
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
@@ -63,3 +74,9 @@ def addStatus(request):
         return Response(serializer.data,status=status.HTTP_201_CREATED)
     else:
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)  
+
+
+def getEmployee(request):
+    employee = Employee.objects.all()
+    serializer = EmployeeSerializer(employee,many=True)
+    return JsonResponse(serializer.data,safe=False)    

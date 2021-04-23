@@ -1,6 +1,6 @@
 .ProductList{
     position: relative;
-    height: 86vh;
+    height: 90vh;
     overflow: hidden;
 }
 .ProductList .Heads{
@@ -17,12 +17,18 @@
     left: 0;
     box-shadow: 0px 0px 5px 0px rgb(204, 204, 204);
 }
+.ProductList .Heads li:nth-last-child(1),.Heads li:nth-child(1),.Heads li:nth-child(3),.Element li:nth-last-child(1),.Element li:nth-child(1),.Element li:nth-child(3){
+    width: 10%;
+}
 .Head{
     display: flex;
     padding: 0 30px;
     box-sizing: border-box;
     justify-content: space-between;
     align-items: center;
+}
+::-webkit-scrollbar{
+    display: none;
 }
 .Head h1{
     padding: 0;
