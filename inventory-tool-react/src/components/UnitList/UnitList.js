@@ -7,13 +7,15 @@ const UnitList = (props) => {
                 <div className={Style.Head}>
                 <div onClick={props.backHandler}><i class="fas fa-arrow-left"></i></div> 
                 <h1>Units</h1> 
-                <button onClick={()=>{props.addToggleHandler("unit")}}>Add Unit</button> 
+                <button onClick={()=>{props.addUnit()}}>Add Unit</button> 
             </div>
             <ul className={Style.Heads}>
                 <li>Barcode</li>
-                <li>Status</li>
+                <li>Branch</li>
+                <li>Holder</li>
                 <li>Added On</li>
                 <li>Shipped On</li>
+                <li>Remark</li>
             </ul>
             {props.activeProductUnit?<div className={Style.List}>
                 {props.activeProductUnit.map(element => {
@@ -21,8 +23,10 @@ const UnitList = (props) => {
                     <ul>
                         <li>{element.barcode}</li>
                         <li>{element.status}</li>
+                        <li>{props.allEmployesDict[element.holder]?props.allEmployesDict[element.holder].employee_name:null}</li>
                         <li>{element.added_on}</li>
                         <li>{element.shipped_on}</li>
+                        <li>{element.remark}</li>
                     </ul>
                 </li>)  
                 })}

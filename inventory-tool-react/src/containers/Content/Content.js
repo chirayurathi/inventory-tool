@@ -9,6 +9,8 @@ class Content extends Component{
         super(props)
         this.state = {
             allProducts:null,
+            allEmployes:null,
+            allEmployesDict:null,
             activeProductUnit:null,
             activeProductUnitStatus:null,
             activeProduct:null,
@@ -21,22 +23,42 @@ class Content extends Component{
                     processor:"",
                     ram:"",
                     operating_system:"",
-                    units:0
+                    units:0,
+                    product_type:""
                 },
                 unit:{
                     barcode:0,
                     status:""
                 },
                 status:{
-                    from_location:"",
                     to_location:"",
-                    from_holder:"",
                     to_holder:"",
                     remark:""
                 }
             }
         }
         this.getProducts()
+        this.getEmployes()
+    }
+    getEmployes = ()=>{
+        let xhr = new XMLHttpRequest()
+        xhr.addEventListener("readystatechange",()=>{
+            if(xhr.readyState===4){
+                let response = JSON.parse(xhr.responseText)
+                if(xhr.status === 200){
+                    let allEmployes = response
+                    let allEmployesDict = {}
+                    allEmployes.forEach(emp =>{
+                        allEmployesDict[emp.employee_id] = emp
+                    })
+                    this.setState({allEmployes:response,allEmployesDict:allEmployesDict})
+                }
+            }
+        })
+        xhr.open("GET","http://127.0.0.1:8000/getEmployes/")
+        xhr.setRequestHeader('content-type','application/json')
+        xhr.withCredentials = false
+        xhr.send()   
     }
     getProducts = ()=>{
             let xhr = new XMLHttpRequest()
@@ -111,12 +133,31 @@ backHandler = ()=>{
     }
 }
 addProducts = ()=>{
+    let form = {
+        product:{
+            product_name:"",
+            processor:"",
+            ram:"",
+            operating_system:"",
+            units:0,
+            product_type:""
+        },
+        unit:{
+            barcode:0,
+            status:""
+        },
+        status:{
+            to_location:"",
+            to_holder:"",
+            remark:""
+        }
+    }
     let xhr = new XMLHttpRequest()
     xhr.addEventListener("readystatechange",()=>{
         if(xhr.readyState===4){
             // let response = JSON.parse(xhr.responseText)
             if(xhr.status === 201){
-                this.setState({formOf:null})
+                this.setState({formOf:null,form:form})
                 this.getProducts()
             }
         }
@@ -127,14 +168,34 @@ xhr.withCredentials = false
 xhr.send(JSON.stringify(this.state.form.product))
 } 
 addUnit = ()=>{
-    let data = {...this.state.form.unit}
+    let form = {
+        product:{
+            product_name:"",
+            processor:"",
+            ram:"",
+            operating_system:"",
+            units:0,
+            product_type:""
+        },
+        unit:{
+            barcode:0,
+            status:""
+        },
+        status:{
+            to_location:"",
+            to_holder:"",
+            remark:""
+        }
+    }
+    // let data = {...this.state.form.unit}
+    let data = {}
     data["Product"] = this.state.activeProduct
     let xhr = new XMLHttpRequest()
     xhr.addEventListener("readystatechange",()=>{
         if(xhr.readyState===4){
             // let response = JSON.parse(xhr.responseText)
             if(xhr.status === 201){
-                this.setState({formOf:null})
+                this.setState({formOf:null,form:form})
                 this.getUnits(this.state.activeProduct)
                 this.getProducts()
             }
@@ -146,6 +207,25 @@ xhr.withCredentials = false
 xhr.send(JSON.stringify(data))
 }  
 addStatus = ()=>{
+    let form = {
+        product:{
+            product_name:"",
+            processor:"",
+            ram:"",
+            operating_system:"",
+            units:0,
+            product_type:""
+        },
+        unit:{
+            barcode:0,
+            status:""
+        },
+        status:{
+            to_location:"",
+            to_holder:"",
+            remark:""
+        }
+    }
     let data = {...this.state.form.status}
     data["ProductUnit"] = this.state.activeUnit
     let xhr = new XMLHttpRequest()
@@ -153,7 +233,7 @@ addStatus = ()=>{
         if(xhr.readyState===4){
             // let response = JSON.parse(xhr.responseText)
             if(xhr.status === 201){
-                this.setState({formOf:null})
+                this.setState({formOf:null,form:form})
                 this.getUpdates(this.state.activeUnit)
                 this.getUnits(this.state.activeProduct)
             }
@@ -178,8 +258,10 @@ xhr.send(JSON.stringify(data))
                 allProducts={this.state.allProducts} 
                 backHandler = {this.backHandler}
                 slider={this.state.slider}
+                addUnit={this.addUnit}
+                allEmployesDict={this.state.allEmployesDict}
             />
-            {this.state.formOf?<Modal addToggleHandler={this.addToggleHandler} inputOnChange={this.inputOnChange} form={this.state.form} formOf={this.state.formOf} addProducts={this.addProducts} addUnit={this.addUnit} addStatus={this.addStatus}/>:null}
+            {this.state.formOf?<Modal addToggleHandler={this.addToggleHandler} inputOnChange={this.inputOnChange} form={this.state.form} formOf={this.state.formOf} addProducts={this.addProducts} addUnit={this.addUnit} addStatus={this.addStatus} allEmployes={this.state.allEmployes}/>:null}
         </div>
         )
     }

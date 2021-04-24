@@ -1,12 +1,27 @@
 from django.db import models
 from datetime import date
+from random import randint
 # Create your models here.
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)
     product_name = models.CharField(max_length=100)
-    processor = models.CharField(max_length=100)
-    operating_system = models.CharField(max_length=100)
-    ram = models.CharField(max_length=3)
+    processor = models.CharField(max_length=100,null=True,blank=True)
+    operating_system = models.CharField(max_length=100,null=True,blank=True)
+    ram = models.CharField(max_length=3,null=True,blank=True)
+    TYPE_CHOICES = [
+        ('laptop','laptop'),
+        ('charger','charger'),
+        ('monitor','monitor'),
+        ('keyboard','keyboard'),
+        ('mouse','mouse'),
+        ('cabinet','cabinet'),
+        ('SMPS','SMPS'),
+        ('graphic card','graphic card'),
+        ('RAM','RAM'),
+        ('HDD','HDD'),
+        ('other','other')
+    ]
+    product_type = models.CharField(max_length=20,choices=TYPE_CHOICES,default='other')
 
 
 class Employee(models.Model):
@@ -45,7 +60,7 @@ class Employee(models.Model):
     department = models.CharField(max_length=50,choices=DEPARTMENT_CHOICES)
 
 class ProductUnit(models.Model):
-    barcode = models.BigAutoField(primary_key=True)
+    barcode = models.BigIntegerField(primary_key=True)
     Product = models.ForeignKey('Product',on_delete=models.CASCADE)
     STATUS_CHOICES = [
         ('IMPORTED','IMPORTED'),
@@ -78,8 +93,8 @@ class StatusUpdate(models.Model):
         ('GOA','GOA')
     ]
     from_location = models.CharField(choices=STATUS_CHOICES,max_length=50)
-    from_holder = models.ForeignKey('Employee',on_delete=models.SET('DELETED'),related_name="fromHolder")
-    to_holder = models.ForeignKey('Employee',on_delete=models.SET('DELETED'),related_name="toHolder")
+    from_holder = models.ForeignKey('Employee',on_delete=models.SET('DELETED'),related_name="fromHolder",null=True,blank=True)
+    to_holder = models.ForeignKey('Employee',on_delete=models.SET('DELETED'),related_name="toHolder",null=True,blank=True)
     to_location = models.CharField(choices=STATUS_CHOICES,max_length=50)
     update_time = models.DateField(default=date.today)
     remark = models.CharField(max_length=100,null=True,blank=True)

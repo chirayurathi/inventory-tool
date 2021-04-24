@@ -44,7 +44,9 @@ def getUnits(request,pid):
 @api_view(['POST'])
 @permission_classes((permissions.AllowAny,))
 def addUnits(request):
-    serializer = ProductUnitSerializer(data=request.data)
+    data = request.data
+    data["status"] = "CHENNAI"
+    serializer = ProductUnitSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
         uObj = serializer.save()
@@ -63,12 +65,18 @@ def getStatus(request,pid):
 @api_view(['POST'])
 @permission_classes((permissions.AllowAny,))
 def addStatus(request):
-    serializer = StatusUpdateSerializer(data=request.data)
+    data = request.data
+    print(data)
+    unit = ProductUnit.objects.get(pk=data["ProductUnit"])
+    data["from_location"] = unit.status
+    data["from_holder"] = unit.holder.employee_id
+    serializer = StatusUpdateSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
         stat = serializer.save()
         unit = ProductUnit.objects.get(pk=stat.ProductUnit.barcode)
         unit.status = stat.to_location
+        unit.holder = stat.to_holder
         unit.shipped_on = stat.update_time
         unit.save()
         return Response(serializer.data,status=status.HTTP_201_CREATED)

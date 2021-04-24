@@ -26,18 +26,18 @@ def populateProduct(k,name,processor,os,ram):
         product.save()
 #end script
 if __name__ == '__main__':
-    # xlf = pd.read_excel('EMPLOYEE LIST APRIL.xlsx', sheet_name=None)
-    # print(xlf['Sheet1'])
-    # dictXl = pd.DataFrame(xlf['Sheet1']).values.tolist()
-    # print(dictXl)
-    # for i in dictXl:
-    #     populate(i[2],i[3],i[4],i[1])
+    xlf = pd.read_excel('EMPLOYEE LIST APRIL.xlsx', sheet_name=None)
+    print(xlf['Sheet1'])
+    dictXl = pd.DataFrame(xlf['Sheet1']).values.tolist()
+    print(dictXl)
+    for i in dictXl:
+        populate(i[2],i[3],i[4],i[1])
     # xlfl = pd.DataFrame(pd.read_excel('productList.xlsx')).values.tolist()
     # print(xlfl) 
     # k=0
     # for i in xlfl:
     #     populateProduct(k,i[0],i[1],i[2],i[3])
     #     k+=1
-    print(Product.objects.all().all())
+    # print(Product.objects.all().all())
 
     

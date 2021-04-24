@@ -9,14 +9,29 @@ const Modal = (props)=>{
                 <div className={Style.Backdrop} onClick={()=>{props.addToggleHandler()}}></div>
                 <div className={`${Style.Form} ${Style.ProductForm}`}>
                     <h1>Add New Product</h1>
+                    <label>Product Type</label>
+                    <select value={props.form.product.product_type} onChange={(e)=>{props.inputOnChange('product','product_type',e.target.value)}}>
+                        <option value=""></option>
+                        <option value="laptop">laptop</option>
+                        <option value="charger">charger</option>
+                        <option value="monitor">monitor</option>
+                        <option value="keyboard">keyboard</option>
+                        <option value="mouse">mouse</option>
+                        <option value="cabinet">cabinet</option>
+                        <option value="SMPS">SMPS</option>
+                        <option value="graphic card">graphic card</option>
+                        <option value="RAM">RAM</option>
+                        <option value="HDD">HDD</option>
+                        <option value="other">other</option>
+                    </select>
                     <label>Product Name</label>
                     <input type="text" placeholder="Name" onChange={(e)=>{props.inputOnChange('product','product_name',e.target.value)}} value={props.form.product.product_name} /> 
-                    <label>RAM</label>
-                    <input type="text" placeholder="RAM" value={props.form.product.ram} onChange={(e)=>{props.inputOnChange('product','ram',e.target.value)}}/> 
-                    <label>Processor</label>
-                    <input type="text" placeholder="Processor" value={props.form.product.processor} onChange={(e)=>{props.inputOnChange('product','processor',e.target.value)}}/>
-                    <label>Operating System</label>
-                    <input type="text" placeholder="Operating System" value={props.form.product.operating_system} onChange={(e)=>{props.inputOnChange('product','operating_system',e.target.value)}}/>
+                    {props.form.product.product_type==="laptop"||props.form.product.product_type==="RAM"?[<label>RAM</label>,
+                    <input type="text" placeholder="RAM" value={props.form.product.ram} onChange={(e)=>{props.inputOnChange('product','ram',e.target.value)}}/>]:null}
+                    {props.form.product.product_type==="laptop"?[<label>Processor</label>,
+                    <input type="text" placeholder="Processor" value={props.form.product.processor} onChange={(e)=>{props.inputOnChange('product','processor',e.target.value)}}/>,
+                    <label>Operating System</label>,
+                    <input type="text" placeholder="Operating System" value={props.form.product.operating_system} onChange={(e)=>{props.inputOnChange('product','operating_system',e.target.value)}}/>]:null}
                     <label>Units</label>
                     <input type="number" placeholder="Units" value={props.form.product.units} onChange={(e)=>{props.inputOnChange('product','units',e.target.value)}}/>
                     <button onClick={props.addProducts}>Submit</button> 
@@ -54,7 +69,7 @@ const Modal = (props)=>{
                 <div className={Style.Backdrop} onClick={()=>{props.addToggleHandler()}}></div>
                 <div className={Style.Form}> 
                 <h1>Move Unit</h1>
-                    <label> From Location </label>
+                    {/* <label> From Location </label>
                     <select value={props.form.status.from_location} onChange={(e)=>{props.inputOnChange('status','from_location',e.target.value)}}>
                     <option value=""></option>
                         <option value="HYDRABAD">HYDRABAD</option>
@@ -64,8 +79,8 @@ const Modal = (props)=>{
                         <option value="DELHI">DELHI</option>    
                         <option value="SURAT">SURAT</option>    
                         <option value="GOA">GOA</option>
-                    </select> 
-                    <label> To Location </label>
+                    </select>  */}
+                    <label> Destination </label>
                     <select value={props.form.status.to_location} onChange={(e)=>{props.inputOnChange('status','to_location',e.target.value)}}>
                         <option value=""></option>
                         <option value="HYDRABAD">HYDRABAD</option>
@@ -75,6 +90,13 @@ const Modal = (props)=>{
                         <option value="DELHI">DELHI</option>    
                         <option value="SURAT">SURAT</option>    
                         <option value="GOA">GOA</option>
+                    </select> 
+                    <label> Present Holder </label>
+                    <select value={props.form.status.to_holder} onChange={(e)=>{props.inputOnChange('status','to_holder',e.target.value)}}>
+                        <option value=""></option>
+                        {props.allEmployes.map(emp=>{
+                            return(<option value={emp.employee_id}>{emp.employee_id} {emp.employee_name}</option>)
+                        })}
                     </select> 
                     <label>Note</label>
                     <input type="text" placeholder="Note" value={props.form.status.remark} onChange={(e)=>{props.inputOnChange('status','remark',e.target.value)}}/>
