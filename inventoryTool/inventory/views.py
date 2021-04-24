@@ -6,6 +6,9 @@ from rest_framework.decorators import api_view,permission_classes
 from rest_framework import status,permissions
 from .models import *
 from .serializers import *
+import qrcode
+from qrcode.image.pure import PymagingImage
+from io import BytesIO
 
 def getProducts(request):
     products = Product.objects.all()
@@ -88,3 +91,21 @@ def getEmployee(request):
     employee = Employee.objects.all()
     serializer = EmployeeSerializer(employee,many=True)
     return JsonResponse(serializer.data,safe=False)    
+
+def getQrCode(request,id):
+    qr = qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_L,
+    box_size=10,
+    border=4,
+    )
+    qr.add_data('Some data')
+    qr.make(fit=True)
+    img = qr.make_image(fill_color="black", back_color="white")
+    buffer = BytesIO()
+    img.save(buffer)
+    print(img)
+    response = HttpResponse(buffer.getbuffer())
+    response['Content-Type'] = "image/png"
+    response['Cache-Control'] = "max-age=0"
+    return response

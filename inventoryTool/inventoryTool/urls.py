@@ -26,5 +26,6 @@ urlpatterns = [
     path('addProducts/',views.addProduct,name="addProduct"),
     path('addUnits/',views.addUnits,name="addUnits"),
     path('addStatus/',views.addStatus,name="addStatus"),
-    path('getEmployes/',views.getEmployee,name="getEmployes")
+    path('getEmployes/',views.getEmployee,name="getEmployes"),
+    path('getQrCode/<id>/',views.getQrCode)
 ]

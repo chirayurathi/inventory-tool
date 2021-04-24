@@ -16,6 +16,7 @@ const UnitList = (props) => {
                 <li>Added On</li>
                 <li>Shipped On</li>
                 <li>Remark</li>
+                <li>QR Code</li>
             </ul>
             {props.activeProductUnit?<div className={Style.List}>
                 {props.activeProductUnit.map(element => {
@@ -23,10 +24,11 @@ const UnitList = (props) => {
                     <ul>
                         <li>{element.barcode}</li>
                         <li>{element.status}</li>
-                        <li>{props.allEmployesDict[element.holder]?props.allEmployesDict[element.holder].employee_name:null}</li>
+                        <li>{props.allEmployesDict[element.holder]?props.allEmployesDict[element.holder].employee_name:"-"}</li>
                         <li>{element.added_on}</li>
                         <li>{element.shipped_on}</li>
                         <li>{element.remark}</li>
+                        <li><i class="fas fa-qrcode" onClick={(e)=>{e.stopPropagation();props.getQr(element.barcode)}}></i></li>
                     </ul>
                 </li>)  
                 })}
