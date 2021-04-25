@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-5t3@=!(1yfb1vcmg$m_&3wk*#vnkncihf05qz!4q5@*pozlxvh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Application definition
@@ -39,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'inventory'
+    'inventory',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -78,10 +81,18 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+        'rest_framework.permissions.IsAuthenticated'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication'
     ]
 }
 
+CORS_ALLOW_HEADERS = [
+    'Authorization',
+    'content-type'
+]
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

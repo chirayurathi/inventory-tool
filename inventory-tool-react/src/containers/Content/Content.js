@@ -59,7 +59,8 @@ class Content extends Component{
         })
         xhr.open("GET","http://127.0.0.1:8000/getEmployes/")
         xhr.setRequestHeader('content-type','application/json')
-        xhr.withCredentials = false
+        xhr.setRequestHeader('Authorization','Token '+localStorage.getItem('AuthToken'))
+        xhr.withCredentials = true
         xhr.send()   
     }
     getProducts = ()=>{
@@ -74,7 +75,9 @@ class Content extends Component{
             })
         xhr.open("GET","http://127.0.0.1:8000/getProducts/")
         xhr.setRequestHeader('content-type','application/json')
-        xhr.withCredentials = false
+        xhr.setRequestHeader('Authorization','Token '+localStorage.getItem('AuthToken'))
+        // xhr.setRequestHeader('Authorization','Token 354478c37bb42ec0cbc54f3ef61f2283059d1ad0')
+        xhr.withCredentials = true
         xhr.send()
     }    
     getUnits = (x)=>{
@@ -89,11 +92,11 @@ class Content extends Component{
         })
         xhr.open("GET","http://127.0.0.1:8000/getUnits/"+x)
         xhr.setRequestHeader('content-type','application/json')
-        xhr.withCredentials = false
+        xhr.setRequestHeader('Authorization','Token '+localStorage.getItem('AuthToken'))
+        xhr.withCredentials = true
         xhr.send(JSON.stringify({product_id:x}))
     }
     addToggleHandler = (x=null)=>{
-        console.log(x)
         this.setState({formOf:x})
     }
     selectProductHandler = (id)=>{
@@ -116,7 +119,8 @@ class Content extends Component{
         })
     xhr.open("GET","http://127.0.0.1:8000/getStatus/"+x)
     xhr.setRequestHeader('content-type','application/json')
-    xhr.withCredentials = false
+    xhr.setRequestHeader('Authorization','Token '+localStorage.getItem('AuthToken'))
+    xhr.withCredentials = true
     xhr.send(JSON.stringify({productunit_id:x}))
     }
     inputOnChange = (x,y,value)=>{
@@ -166,7 +170,8 @@ class Content extends Component{
         })
     xhr.open("POST","http://127.0.0.1:8000/addProducts/")
     xhr.setRequestHeader('content-type','application/json')
-    xhr.withCredentials = false
+    xhr.setRequestHeader('Authorization','Token '+localStorage.getItem('AuthToken'))
+    xhr.withCredentials = true
     xhr.send(JSON.stringify(this.state.form.product))
     } 
     addUnit = ()=>{
@@ -205,7 +210,8 @@ class Content extends Component{
         })
     xhr.open("POST","http://127.0.0.1:8000/addUnits/")
     xhr.setRequestHeader('content-type','application/json')
-    xhr.withCredentials = false
+    xhr.setRequestHeader('Authorization','Token '+localStorage.getItem('AuthToken'))
+    xhr.withCredentials = true
     xhr.send(JSON.stringify(data))
     }  
     addStatus = ()=>{
@@ -243,7 +249,8 @@ class Content extends Component{
         })
         xhr.open("POST","http://127.0.0.1:8000/addStatus/")
         xhr.setRequestHeader('content-type','application/json')
-        xhr.withCredentials = false
+        xhr.setRequestHeader('Authorization','Token '+localStorage.getItem('AuthToken'))
+        xhr.withCredentials = true
         xhr.send(JSON.stringify(data))
     }  
     getQr = (id=null)=>{

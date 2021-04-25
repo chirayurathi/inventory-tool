@@ -19,8 +19,7 @@ const ProductList = (props) => {
             </ul>
             {props.allProducts?<ul className={Style.List}>
                 {props.allProducts.map(element => {
-                    console.log(element)
-                    return(<li className={Style.Element} onClick={()=>{props.selectProductHandler(element.product_id)}}>
+                    return(<li className={Style.Element} key={element.product_id} onClick={()=>{props.selectProductHandler(element.product_id)}}>
                         <ul>
                             <li>{element.product_type}</li>
                             <li>{element.product_name}</li>

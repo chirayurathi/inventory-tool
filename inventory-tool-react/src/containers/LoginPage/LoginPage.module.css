@@ -1,0 +1,55 @@
+.LoginPage{
+    width: 100%;
+    box-sizing: border-box;
+    height: 100vh;
+    padding-top: 10vh;
+    text-align: center;
+    font-family: 'Poppins',sans-serif;
+}
+.LoginPage button,.LoginPage input,.LoginPage label{
+    display: block;
+}
+.LoginPage input,.error{
+    display: block;
+    width: 30%;
+    margin: 20px auto;
+    border-radius: 7px;
+    height: 50px;
+    /* border:1px solid gray; */
+    border:none;
+    box-shadow: 0px 0px 9px 0px rgba(189, 185, 185, 0.575);
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 30px;
+    transition: 0.5s;
+}
+.LoginPage input:hover{
+    box-shadow: 0px 0px 13px 0px rgba(133, 129, 129, 0.575);
+    outline: none;
+}
+.LoginPage label{
+    margin-top: 60px;
+    display: block;
+}
+.LoginPage button{
+    background-color: white;
+    outline: none;
+    border: 2px solid rgb(9, 163, 9);
+    color:rgb(9, 163, 9);
+    padding: 10px 23px;
+    margin: 50px auto;
+    border-radius: 7px;
+    font-family: 'Poppins',sans-serif;
+    transition: 0.5s;
+}
+.LoginPage button:hover{
+    background-color: rgb(9, 163, 9);
+    color: white;
+    box-shadow: 0px 0px 5px 0px rgb(9, 163, 9);
+}
+.error{
+line-height: 50px;
+margin: 0 auto;
+background-color: rgb(250, 193, 193);
+opacity: 0;
+}

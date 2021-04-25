@@ -5,7 +5,7 @@ const UnitList = (props) => {
     return(
         <div className={Style.UnitList}>
                 <div className={Style.Head}>
-                <div onClick={props.backHandler}><i class="fas fa-arrow-left"></i></div> 
+                <div onClick={props.backHandler}><i className="fas fa-arrow-left"></i></div> 
                 <h1>Units</h1> 
                 <button onClick={()=>{props.addUnit()}}>Add Unit</button> 
             </div>
@@ -20,7 +20,7 @@ const UnitList = (props) => {
             </ul>
             {props.activeProductUnit?<div className={Style.List}>
                 {props.activeProductUnit.map(element => {
-                return(<li className={Style.Element} onClick={()=>{props.selectUnitHandler(element.barcode)}}>
+                return(<li className={Style.Element} key={element.barcode} onClick={()=>{props.selectUnitHandler(element.barcode)}}>
                     <ul>
                         <li>{element.barcode}</li>
                         <li>{element.status}</li>
@@ -28,7 +28,7 @@ const UnitList = (props) => {
                         <li>{element.added_on}</li>
                         <li>{element.shipped_on}</li>
                         <li>{element.remark}</li>
-                        <li><i class="fas fa-qrcode" onClick={(e)=>{e.stopPropagation();props.getQr(element.barcode)}}></i></li>
+                        <li><i className="fas fa-qrcode" onClick={(e)=>{e.stopPropagation();props.getQr(element.barcode)}}></i></li>
                     </ul>
                 </li>)  
                 })}

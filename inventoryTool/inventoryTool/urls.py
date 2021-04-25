@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from inventory import views
+from rest_framework.authtoken import views as auth_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +28,7 @@ urlpatterns = [
     path('addUnits/',views.addUnits,name="addUnits"),
     path('addStatus/',views.addStatus,name="addStatus"),
     path('getEmployes/',views.getEmployee,name="getEmployes"),
-    path('getQrCode/<id>/',views.getQrCode)
+    path('getQrCode/<id>/',views.getQrCode,name="getQr"),
+    path('createTokens/',views.createTokens,name='createTokens'),
+    path('api-token-auth/',auth_view.obtain_auth_token)
 ]

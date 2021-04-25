@@ -5,7 +5,7 @@ const StatusList = (props) => {
     return(
         <div className={Style.StatusList}>
                 <div className={Style.Head}>
-                <div onClick={props.backHandler}><i class="fas fa-arrow-left"></i></div> 
+                <div onClick={props.backHandler}><i className="fas fa-arrow-left"></i></div> 
                 <h1>Status</h1> 
                 <button onClick={()=>{props.addToggleHandler("status")}}>Add Status</button> 
             </div>
@@ -18,9 +18,8 @@ const StatusList = (props) => {
                 <li>Remark</li>
             </ul>
             {props.activeProductUnitStatus?<ul className={Style.List}>
-                {props.activeProductUnitStatus.map(element =>{
-                    console.log(props.allEmployesDict)
-                    return(<li className={Style.Element}>
+                {props.activeProductUnitStatus.map((element,index) =>{
+                    return(<li className={Style.Element} key={index}>
                         <ul>
                             <li>{element.from_location}</li>
                             <li>{props.allEmployesDict[element.from_holder]?props.allEmployesDict[element.from_holder].employee_name:"-"}</li>
