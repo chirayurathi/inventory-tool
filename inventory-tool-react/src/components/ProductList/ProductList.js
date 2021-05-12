@@ -15,6 +15,7 @@ const ProductList = (props) => {
                 <li>RAM</li>
                 <li>Processor</li>
                 <li>OS</li>
+                <li>HDD</li>
                 <li>Total Units</li>
             </ul>
             {props.allProducts?<ul className={Style.List}>
@@ -26,6 +27,7 @@ const ProductList = (props) => {
                             <li>{element.ram}</li>
                             <li>{element.processor}</li>
                             <li>{element.operating_system}</li>
+                            <li>{element.hdd}</li>
                             <li>{element.total_units}</li>
                         </ul> 
                   </li>) 

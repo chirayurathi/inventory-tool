@@ -8,6 +8,7 @@ class Product(models.Model):
     processor = models.CharField(max_length=100,null=True,blank=True)
     operating_system = models.CharField(max_length=100,null=True,blank=True)
     ram = models.CharField(max_length=3,null=True,blank=True)
+    hdd = models.CharField(max_length=10,null=True,blank=True)
     TYPE_CHOICES = [
         ('laptop','laptop'),
         ('charger','charger'),
@@ -19,6 +20,7 @@ class Product(models.Model):
         ('graphic card','graphic card'),
         ('RAM','RAM'),
         ('HDD','HDD'),
+        ('furniture','furniture'),
         ('other','other')
     ]
     product_type = models.CharField(max_length=20,choices=TYPE_CHOICES,default='other')

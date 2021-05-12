@@ -37,12 +37,16 @@ def addProduct(request):
         product = serializer.save()
         print(request.data)
         for i in range(int(request.data["units"])):
-            newUnit = ProductUnit()
-            newUnit.Product = product
-            newUnit.status = 'CHENNAI'
-            newUnit.save()
-            statusNew = StatusUpdate.objects.create(ProductUnit=newUnit,from_location='IMPORTED',to_location=newUnit.status,update_time=newUnit.added_on)
-            statusNew.save()
+            newUnit = ProductUnitSerializer(data={'Product':str(product.product_id),'status':'CHENNAI'})
+            # newUnit.Product = product
+            # newUnit.status = 'CHENNAI'
+            print(newUnit)
+            if newUnit.is_valid():
+                print("valid")
+                newUnit.save()
+                newUnit = newUnit.save()
+                statusNew = StatusUpdate.objects.create(ProductUnit=newUnit,from_location='IMPORTED',to_location=newUnit.status,update_time=newUnit.added_on)
+                statusNew.save()
         return Response(serializer.data,status=status.HTTP_201_CREATED)
     else:
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
@@ -60,6 +64,7 @@ def getUnits(request,pid):
 def addUnits(request):
     data = request.data
     data["status"] = "CHENNAI"
+    print(data)
     serializer = ProductUnitSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
@@ -85,7 +90,7 @@ def addStatus(request):
     print(data)
     unit = ProductUnit.objects.get(pk=data["ProductUnit"])
     data["from_location"] = unit.status
-    data["from_holder"] = unit.holder.employee_id
+    data["from_holder"] = unit.holder.employee_id if unit.holder else None
     serializer = StatusUpdateSerializer(data=data)
     if serializer.is_valid():
         serializer.save()

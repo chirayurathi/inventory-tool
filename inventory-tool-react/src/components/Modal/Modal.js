@@ -13,7 +13,7 @@ const Modal = (props)=>{
                     <select value={props.form.product.product_type} onChange={(e)=>{props.inputOnChange('product','product_type',e.target.value)}}>
                         <option value=""></option>
                         <option value="laptop">laptop</option>
-                        <option value="charger">charger</option>
+                        {/* <option value="charger">charger</option> */}
                         <option value="monitor">monitor</option>
                         <option value="keyboard">keyboard</option>
                         <option value="mouse">mouse</option>
@@ -22,6 +22,7 @@ const Modal = (props)=>{
                         <option value="graphic card">graphic card</option>
                         <option value="RAM">RAM</option>
                         <option value="HDD">HDD</option>
+                        <option value="furniture">Furniture</option>
                         <option value="other">other</option>
                     </select>
                     <label>Product Name</label>
@@ -31,7 +32,9 @@ const Modal = (props)=>{
                     {props.form.product.product_type==="laptop"?[<label>Processor</label>,
                     <input type="text" placeholder="Processor" value={props.form.product.processor} onChange={(e)=>{props.inputOnChange('product','processor',e.target.value)}}/>,
                     <label>Operating System</label>,
-                    <input type="text" placeholder="Operating System" value={props.form.product.operating_system} onChange={(e)=>{props.inputOnChange('product','operating_system',e.target.value)}}/>]:null}
+                    <input type="text" placeholder="Operating System" value={props.form.product.operating_system} onChange={(e)=>{props.inputOnChange('product','operating_system',e.target.value)}}/>,
+                    <label>HDD</label>,
+                    <input type="text" placeholder="Operating System" value={props.form.product.hdd} onChange={(e)=>{props.inputOnChange('product','hdd',e.target.value)}}/>]:null}
                     <label>Units</label>
                     <input type="number" placeholder="Units" value={props.form.product.units} onChange={(e)=>{props.inputOnChange('product','units',e.target.value)}}/>
                     <button onClick={props.addProducts}>Submit</button> 

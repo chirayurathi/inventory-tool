@@ -3,8 +3,8 @@ import pandas as pd
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','inventoryTool.settings')
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 from django.core.wsgi import get_wsgi_application
-from django.contrib.auth.models import User
-from rest_framework.authtoken.models import Token
+# from django.contrib.auth.models import User
+# from rest_framework.authtoken.models import Token
 application = get_wsgi_application()
 import django
 from inventory.models import Employee,Product
@@ -34,10 +34,10 @@ if __name__ == '__main__':
     print(dictXl)
     for i in dictXl:
         populate(i[2],i[3],i[4],i[1])
-    admin = User(username="chirayurathi")
-    admin.set_password("qwerty1@3")
-    admin.save()
-    Token.objects.get_or_create(user=admin)
+    # admin = User(username="chirayurathi")
+    # admin.set_password("qwerty1@3")
+    # admin.save()
+    # Token.objects.get_or_create(user=admin)
     # xlfl = pd.DataFrame(pd.read_excel('productList.xlsx')).values.tolist()
     # print(xlfl) 
     # k=0

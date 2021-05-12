@@ -7,7 +7,7 @@ function App() {
   const [AuthToken,setAuthToken] = useState(localStorage.getItem('AuthToken'))
   return (
     <div className="App">
-      {AuthToken?<Content/>:<LoginPage setAuthToken={setAuthToken}/>}
+      {AuthToken?<Content setAuthToken={setAuthToken}/>:<LoginPage setAuthToken={setAuthToken}/>}
     </div>
   );
 }

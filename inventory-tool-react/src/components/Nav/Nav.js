@@ -1,10 +1,15 @@
 import React from 'react'
 import Style from './Nav.module.css'
 
-const Nav = () => {
+const Nav = (props) => {
     return(
         <nav className={Style.Nav}>
-            Inventory Tool
+            <span>Inventory Tool</span>
+            {props.loggedout?null:<div className={Style.Buttons}>
+                <button onClick={props.logoutHandler}>
+                    Logout
+                </button>
+            </div>}
         </nav>
         )
 }

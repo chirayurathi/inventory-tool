@@ -26,7 +26,8 @@ class Content extends Component{
                     ram:"",
                     operating_system:"",
                     units:0,
-                    product_type:""
+                    product_type:"",
+                    hdd:""
                 },
                 unit:{
                     barcode:0,
@@ -41,6 +42,10 @@ class Content extends Component{
         }
         this.getProducts()
         this.getEmployes()
+    }
+    logoutHandler = ()=>{
+        localStorage.clear()
+        this.props.setAuthToken(null)
     }
     getEmployes = ()=>{
         let xhr = new XMLHttpRequest()
@@ -146,7 +151,8 @@ class Content extends Component{
                 ram:"",
                 operating_system:"",
                 units:0,
-                product_type:""
+                product_type:"",
+                hdd:""
             },
             unit:{
                 barcode:0,
@@ -182,7 +188,8 @@ class Content extends Component{
                 ram:"",
                 operating_system:"",
                 units:0,
-                product_type:""
+                product_type:"",
+                hdd:""
             },
             unit:{
                 barcode:0,
@@ -222,7 +229,8 @@ class Content extends Component{
                 ram:"",
                 operating_system:"",
                 units:0,
-                product_type:""
+                product_type:"",
+                hdd:""
             },
             unit:{
                 barcode:0,
@@ -259,7 +267,7 @@ class Content extends Component{
     render(){
         return(
         <div className={Style.Content}>
-            <Nav/>
+            <Nav logoutHandler={this.logoutHandler}/>
             <ListContainer 
                 activeProductUnitStatus={this.state.activeProductUnitStatus} 
                 selectProductHandler = {this.selectProductHandler}

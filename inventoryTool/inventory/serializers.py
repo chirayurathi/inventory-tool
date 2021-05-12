@@ -10,6 +10,7 @@ class sendProductSerializer(serializers.Serializer):
     ram = serializers.CharField(max_length=3)
     total_units = serializers.IntegerField()
     product_type = serializers.CharField(max_length=20)
+    hdd = serializers.CharField(max_length=10)
 
 class ProductSerializer(serializers.ModelSerializer):
         class Meta:

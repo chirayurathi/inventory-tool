@@ -26,7 +26,7 @@ class LoginPage extends Component{
         })
         xhr.open("POST","http://127.0.0.1:8000/api-token-auth/")
         xhr.setRequestHeader('content-type','application/json')
-        xhr.setRequestHeader('WWW-Authenticate',localStorage.getItem('AuthToken'))
+        // xhr.setRequestHeader('WWW-Authenticate',localStorage.getItem('AuthToken'))
         xhr.withCredentials = false
         xhr.send(JSON.stringify(this.state.form))  
     }
@@ -37,7 +37,7 @@ class LoginPage extends Component{
     }
     render(){
         return(<div className={Style.LoginPage}>
-            <Nav />
+            <Nav loggedout/>
             <h1>Login</h1>
             <div className={Style.error} style={{opacity:this.state.error?1:0}}>Invalid Credentials.</div>
             <label for="uername">Username</label>
