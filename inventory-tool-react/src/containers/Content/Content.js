@@ -20,6 +20,7 @@ class Content extends Component{
             slider:0,
             formOf:null,
             form:{
+                category:"",
                 product:{
                     product_name:"",
                     processor:"",
@@ -131,7 +132,19 @@ class Content extends Component{
     inputOnChange = (x,y,value)=>{
         let formCopy = {...this.state.form}
         let formCopyX = {...formCopy[x]}
-        formCopyX[y] = value
+        if(x==='category'){
+            formCopyX = value
+        }
+        else{
+            formCopyX[y] = value
+        }
+        if((value==='furniture'||value==='other')&&y===''){
+            let copy = {
+                ...formCopy['product'],
+                product_type:value
+            }
+            formCopy['product'] = copy
+        }
         formCopy[x] = formCopyX
         this.setState({form:formCopy})
     }
@@ -145,6 +158,7 @@ class Content extends Component{
     }
     addProducts = ()=>{
         let form = {
+            category:"",
             product:{
                 product_name:"",
                 processor:"",
@@ -182,6 +196,7 @@ class Content extends Component{
     } 
     addUnit = ()=>{
         let form = {
+            category:"",
             product:{
                 product_name:"",
                 processor:"",
@@ -223,6 +238,7 @@ class Content extends Component{
     }  
     addStatus = ()=>{
         let form = {
+            category:"",
             product:{
                 product_name:"",
                 processor:"",

@@ -9,8 +9,15 @@ const Modal = (props)=>{
                 <div className={Style.Backdrop} onClick={()=>{props.addToggleHandler()}}></div>
                 <div className={`${Style.Form} ${Style.ProductForm}`}>
                     <h1>Add New Product</h1>
-                    <label>Product Type</label>
-                    <select value={props.form.product.product_type} onChange={(e)=>{props.inputOnChange('product','product_type',e.target.value)}}>
+                    <label>Product Category</label>
+                    <select value={props.form.category} onChange={(e)=>{props.inputOnChange('category','',e.target.value)}}>
+                        <option value=""></option>
+                        <option value="IT">IT</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="other">other</option>
+                    </select>
+                    {props.form.category==="IT"?<label>Product Type</label>:null}
+                    {props.form.category==="IT"?<select value={props.form.product.product_type} onChange={(e)=>{props.inputOnChange('product','product_type',e.target.value)}}>
                         <option value=""></option>
                         <option value="laptop">laptop</option>
                         {/* <option value="charger">charger</option> */}
@@ -22,9 +29,9 @@ const Modal = (props)=>{
                         <option value="graphic card">graphic card</option>
                         <option value="RAM">RAM</option>
                         <option value="HDD">HDD</option>
-                        <option value="furniture">Furniture</option>
-                        <option value="other">other</option>
-                    </select>
+                        {/* <option value="furniture">Furniture</option> */}
+                        {/* <option value="other">other</option> */}
+                    </select>:null}
                     <label>Product Name</label>
                     <input type="text" placeholder="Name" onChange={(e)=>{props.inputOnChange('product','product_name',e.target.value)}} value={props.form.product.product_name} /> 
                     {props.form.product.product_type==="laptop"||props.form.product.product_type==="RAM"?[<label>RAM</label>,
@@ -34,7 +41,7 @@ const Modal = (props)=>{
                     <label>Operating System</label>,
                     <input type="text" placeholder="Operating System" value={props.form.product.operating_system} onChange={(e)=>{props.inputOnChange('product','operating_system',e.target.value)}}/>,
                     <label>HDD</label>,
-                    <input type="text" placeholder="Operating System" value={props.form.product.hdd} onChange={(e)=>{props.inputOnChange('product','hdd',e.target.value)}}/>]:null}
+                    <input type="text" placeholder="HDD" value={props.form.product.hdd} onChange={(e)=>{props.inputOnChange('product','hdd',e.target.value)}}/>]:null}
                     <label>Units</label>
                     <input type="number" placeholder="Units" value={props.form.product.units} onChange={(e)=>{props.inputOnChange('product','units',e.target.value)}}/>
                     <button onClick={props.addProducts}>Submit</button> 
@@ -57,9 +64,9 @@ const Modal = (props)=>{
                         <option value="BANGLORE">BANGLORE</option>    
                         <option value="CHENNAI">CHENNAI</option>    
                         <option value="MUMBAI">MUMBAI</option>    
-                        <option value="DELHI">DELHI</option>    
-                        <option value="SURAT">SURAT</option>    
-                        <option value="GOA">GOA</option>
+                        <option value="VELLORE">VELLORE</option>    
+                        <option value="COIMBATORE">COIMBATORE</option>    
+                        <option value="CALICUT">CALICUT</option>
                     </select> 
                     <button onClick={props.addUnit}>Submit</button> 
                 </div>

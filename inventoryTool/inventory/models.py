@@ -70,10 +70,11 @@ class ProductUnit(models.Model):
         ('HYDRABAD','HYDRABAD'),
         ('BANGLORE','BANGLORE'),
         ('CHENNAI','CHENNAI'),
+        ('COIMBATORE','COIMBATORE'),
         ('MUMBAI','MUMBAI'),
-        ('DELHI','DELHI'),
-        ('SURAT','SURAT'),
-        ('GOA','GOA')
+        ('MADURAI','MADURAI'),
+        ('VELLORE','VELLORE'),
+        ('CALICUT','CALICUT')
     ]
     status = models.CharField(choices=STATUS_CHOICES,max_length=50)
     holder = models.ForeignKey('Employee',on_delete=models.CASCADE,null=True,blank=True)
