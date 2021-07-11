@@ -9,6 +9,7 @@ const StatusList = (props) => {
                 <h1>Status</h1> 
                 <button onClick={()=>{props.addToggleHandler("status")}}>Add Status</button> 
             </div>
+            <div className={Style.Box}>
             <ul className={Style.Heads}>
                 <li>Initial Location</li>
                 <li>Previous Holder</li>
@@ -22,15 +23,16 @@ const StatusList = (props) => {
                     return(<li className={Style.Element} key={index}>
                         <ul>
                             <li>{element.from_location}</li>
-                            <li>{props.allEmployesDict[element.from_holder]?props.allEmployesDict[element.from_holder].employee_name:"-"}</li>
+                            <li>{props.allEmployeesDict[element.from_holder]?props.allEmployeesDict[element.from_holder].employee_name:"-"}</li>
                             <li>{element.to_location}</li>
-                            <li>{props.allEmployesDict[element.to_holder]?props.allEmployesDict[element.to_holder].employee_name:"-"}</li>
+                            <li>{props.allEmployeesDict[element.to_holder]?props.allEmployeesDict[element.to_holder].employee_name:"-"}</li>
                             <li>{element.update_time}</li>
                             <li>{element.remark}</li>
                         </ul>
                     </li>)
                 })}
             </ul>:null}
+            </div>
         </div>
         )
 }

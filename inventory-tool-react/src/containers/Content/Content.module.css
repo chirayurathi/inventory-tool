@@ -1,5 +1,8 @@
 .Content{
-    width: 100%;
+    width: calc( 100% - 250px );
+    margin-left: 250px;
     /* min-height: 100vh; */
     font-family: 'Poppins',sans-serif;
+    overflow: hidden;
+    background-color: #f8f8f8;
 }

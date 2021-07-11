@@ -22,13 +22,18 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('getProducts/',views.getProducts,name="getProducts"),
+    path('getOthers/',views.getOthers,name="getOthers"),
     path('getUnits/<pid>/',views.getUnits,name="getUnits"),
     path('getStatus/<pid>/',views.getStatus,name="getStatus"),
     path('addProducts/',views.addProduct,name="addProduct"),
     path('addUnits/',views.addUnits,name="addUnits"),
     path('addStatus/',views.addStatus,name="addStatus"),
+    path('addOthers/',views.addOthers,name="addOthers"),
+    path('updateRemark/',views.updateRemark,name="updateRemark"),
+    path('addEmployee/',views.addEmployee,name="addEmployee"),
     path('getEmployes/',views.getEmployee,name="getEmployes"),
     path('getQrCode/<id>/',views.getQrCode,name="getQr"),
     path('createTokens/',views.createTokens,name='createTokens'),
+    path('exportExcel/',views.exportExcel,name='exportExcel'),
     path('api-token-auth/',auth_view.obtain_auth_token)
 ]

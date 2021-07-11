@@ -6,7 +6,7 @@ const QrModal = (props)=>{
                 <div className={Style.Backdrop} onClick={()=>{props.getQr()}}></div>
                 <div className={Style.QR}>
                     <img alt="QR Code" src={`http://localhost:8000/getQrCode/${props.qrid}/`} />
-                    <a href={`http://localhost:8000/getQrCode/${props.qrid}/`} download>Download</a> 
+                    <a href={`http://localhost:8000/getQrCode/${props.qrid}/`} download={true}>Download</a> 
                 </div>
         </div>)
 }

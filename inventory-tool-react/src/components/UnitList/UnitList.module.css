@@ -1,7 +1,8 @@
 .UnitList{
     position: relative;
-    height: 86vh;
+    height: 90vh;
     overflow: hidden;
+
 }
 .UnitList .Heads{
     padding: 0;
@@ -13,9 +14,21 @@
     align-items: center;
     height: 7vh;
     position: absolute;
-    top: 7vh;
+    top: 0vh;
     left: 0;
-    box-shadow: 0px 0px 5px 0px rgb(204, 204, 204);
+    /* box-shadow: 0px 0px 5px 0px rgb(204, 204, 204); */
+    border-bottom: 1px solid rgb(206, 204, 204);
+
+}
+.Box{
+    width: calc( 100% - 10px );
+    margin: auto;
+    box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 0.719);
+    position: absolute;
+    height: 67vh;
+    top: 7vh;
+    left: 5px;
+    background-color: white;
 }
 .Heads li{
     text-align: center;
@@ -26,13 +39,14 @@
     margin: 0;
     width: 100%;
     list-style: none;
-    height: 79vh;
+    height: 60vh;
     overflow: auto;
-    margin-top: 14vh;
+    margin-top: 7vh;
+    background-color: white;
 }
 .Head{
     display: flex;
-    padding: 0 30px;
+    padding: 0 5px;
     box-sizing: border-box;
     justify-content: space-between;
     align-items: center;
@@ -44,27 +58,33 @@
 .Head div{
     width: 75px;
 }
-.Head button:hover{
-    background-color: rgb(9, 163, 9);
-    color: white;
-    box-shadow: 0px 0px 5px 0px rgb(9, 163, 9);
-}
 .Head button{
     background-color: white;
     outline: none;
-    border: 2px solid rgb(9, 163, 9);
-    color:rgb(9, 163, 9);
+    border: 2px solid #e82d96;
+    color:#e82d96;
     padding: 0 13px;
     border-radius: 7px;
     height: 70%;
-    transition: 0.5s;
     font-family: 'Poppins',sans-serif;
+    transition: 0.5s;
+}
+.Head button:hover{
+    background-color: #e82d96;
+    color: white;
+    box-shadow: 0px 0px 5px 0px #e82d96;
 }
 .Heads li:nth-child(1),.Heads li:nth-child(2),.Heads li:nth-child(4),.Heads li:nth-child(5),.Element li:nth-child(1),.Element li:nth-child(2),.Element li:nth-child(4),.Element li:nth-child(5){
     width: 10%;
 }
 .Heads li:nth-last-child(1),.Element li:nth-last-child(1){
     width: 5%;
+}
+.Heads li{
+    /* font-weight: 700; */
+    text-transform: uppercase;
+    color: #e82d96;
+    /* letter-spacing: 1px; */
 }
 .Element i{
     padding: 10px;
@@ -81,16 +101,16 @@
     width: 100%;
     height: 9vh;
     text-align: center;
-    border-bottom: 1px solid rgb(206, 204, 204);
+    border-bottom: 1px solid rgb(223, 223, 223);
     transition: 0.5s;
 }
 .Element:hover{
-    background-color: rgb(248, 245, 245);
+    background-color: rgb(238, 235, 235);
 }
 .Head{
     width: 100%;
     height: 7vh;
-    box-shadow: 0px 0px 5px gray;
+    /* box-shadow: 0px 0px 5px gray; */
     position: absolute;
     top: 0;
     left: 0;
@@ -108,4 +128,36 @@
 .Element ul > li{
     width: 25%;
     text-align: center;
+}
+.Element ul .Remark{
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+}
+.Element ul .Remark span{
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.1s;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.Element ul .Remark span i{
+    border:none;
+    color: white;
+    opacity: 0;
+    transition: 0.1s;
+}
+.Element ul .Remark:hover > span{
+    background-color: rgba(121, 121, 121, 0.541);
+}
+.Element ul .Remark:hover > span i{
+    opacity:1;
+    background-color: transparent;
 }

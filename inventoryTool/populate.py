@@ -10,12 +10,13 @@ import django
 from inventory.models import Employee,Product
 django.setup()
 #write script
-def populate(eid,name,dept,branch):
-    user = Employee()
-    user.employee_id = eid
+def populate(eid,name,dept,branch,designation):
+    user = Employee.objects.get(pk=eid)
+    # user.employee_id = eid
     user.employee_name = name
     user.department = dept
     user.branch = branch
+    user.designation = designation
     user.save()
 def populateProduct(k,name,processor,os,ram):
     if ram:
@@ -33,7 +34,7 @@ if __name__ == '__main__':
     dictXl = pd.DataFrame(xlf['Sheet1']).values.tolist()
     print(dictXl)
     for i in dictXl:
-        populate(i[2],i[3],i[4],i[1])
+        populate(i[2],i[3],i[4],i[1],i[5])
     # admin = User(username="chirayurathi")
     # admin.set_password("qwerty1@3")
     # admin.save()

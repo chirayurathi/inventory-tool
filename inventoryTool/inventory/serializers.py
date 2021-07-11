@@ -11,11 +11,18 @@ class sendProductSerializer(serializers.Serializer):
     total_units = serializers.IntegerField()
     product_type = serializers.CharField(max_length=20)
     hdd = serializers.CharField(max_length=10)
+    other_type = serializers.PrimaryKeyRelatedField(queryset=Other_type.objects.all())
+    description = serializers.CharField(max_length = 100)
+
+class OtherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Other_type
+        fields = '__all__'
 
 class ProductSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = Product
-            fields = '__all__'
+    class Meta:
+        model = Product
+        fields = '__all__'
 
 class ProductUnitSerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,12 +42,12 @@ class ProductUnitSerializer(serializers.ModelSerializer):
 
 
 class StatusUpdateSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = StatusUpdate
-            fields = '__all__'
-
-class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Employee
+        model = StatusUpdate
         fields = '__all__'
 
+class EmployeeSerializer(serializers.ModelSerializer):
+    ProductUnit_set = ProductUnitSerializer(many=True, read_only=True)
+    class Meta:
+        model = Employee
+        fields = ['employee_id','employee_name','branch','department','designation','ProductUnit_set']

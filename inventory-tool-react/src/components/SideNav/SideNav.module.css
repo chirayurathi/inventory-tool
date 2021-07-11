@@ -1,0 +1,47 @@
+.SideNav{
+    position: fixed;
+    top: 0vh;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    list-style: none;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    background-color: #880a51;
+    color: white;
+    padding: 11vh 0;
+    z-index: 99;
+    font-family: 'Poppins',sans-serif;
+    text-transform: uppercase;
+    align-items: center;
+}
+.SideNav li{
+    height: 75px;
+    width: 100%;
+    text-align: center;
+    letter-spacing: 1px;
+    transition: 0.5s;
+    line-height: 75px;
+    cursor: pointer;
+    position: relative;
+}
+.SideNav li:hover{
+    background-color: #be1876;
+}
+.SideNav span{
+    position: absolute;
+    left:0;
+    height: 100%;
+    top: 0;
+    width: 0;
+    transition: 0.2s;
+    background-color: #e82d96;
+}
+.SideNav .Active span{
+    width: 10px;
+}
+.SideNav .Active{
+    background-color: #be1876;
+}
+    

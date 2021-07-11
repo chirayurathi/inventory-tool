@@ -9,6 +9,7 @@ class Product(models.Model):
     operating_system = models.CharField(max_length=100,null=True,blank=True)
     ram = models.CharField(max_length=3,null=True,blank=True)
     hdd = models.CharField(max_length=10,null=True,blank=True)
+    description = models.CharField(max_length=100,null=True,blank=True)
     TYPE_CHOICES = [
         ('laptop','laptop'),
         ('charger','charger'),
@@ -24,6 +25,7 @@ class Product(models.Model):
         ('other','other')
     ]
     product_type = models.CharField(max_length=20,choices=TYPE_CHOICES,default='other')
+    other_type = models.ForeignKey('other_type',on_delete=models.CASCADE,blank=True,null=True)
 
 
 class Employee(models.Model):
@@ -60,6 +62,7 @@ class Employee(models.Model):
         ('LEARNING & DEVELOPMENT','LEARNING & DEVELOPMENT')
     ]
     department = models.CharField(max_length=50,choices=DEPARTMENT_CHOICES)
+    designation = models.CharField(max_length=75,null=True,blank=True)
 
 class ProductUnit(models.Model):
     barcode = models.BigIntegerField(primary_key=True)
@@ -101,3 +104,7 @@ class StatusUpdate(models.Model):
     to_location = models.CharField(choices=STATUS_CHOICES,max_length=50)
     update_time = models.DateField(default=date.today)
     remark = models.CharField(max_length=100,null=True,blank=True)
+
+class Other_type(models.Model):
+    sub_type = models.CharField(max_length=50,primary_key=True)
+    

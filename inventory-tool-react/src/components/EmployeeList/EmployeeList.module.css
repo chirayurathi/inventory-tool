@@ -1,9 +1,9 @@
-.ProductList{
+.EmployeeList{
     position: relative;
     height: 90vh;
     overflow: hidden;
 }
-.ProductList .Heads{
+.EmployeeList .Heads{
     padding: 0;
     margin: 0;
     width: 100%;
@@ -27,35 +27,20 @@
     left: 5px;
     background-color: white;
 }
-.ProductList .Heads li:nth-last-child(1),.Heads li:nth-child(3),.Element li:nth-last-child(1),.Element li:nth-child(3){
+/* .EmployeeList .Heads li:nth-last-child(1),.Heads li:nth-child(3),.Element li:nth-last-child(1),.Element li:nth-child(3){
     width: 10%;
 }
-.ProductList .Heads li:nth-child(1),.Element li:nth-child(1){
+.EmployeeList .Heads li:nth-child(1),.Element li:nth-child(1){
     width: 20%;
 }
-.ProductList.Other .Heads li:nth-child(2),.ProductList.Other .Heads li:nth-child(3),.ProductList.Other .Element li:nth-child(2),.ProductList.Other .Element li:nth-child(3){
+.EmployeeList.Other .Heads li:nth-child(2),.EmployeeList.Other .Heads li:nth-child(3),.EmployeeList.Other .Element li:nth-child(2),.EmployeeList.Other .Element li:nth-child(3){
     width: 30%;
+} */
+.EmployeeList .Heads li:nth-child(1),.Element li:nth-child(1){
+    width: 10%;
 }
-.Head .Filters{
-    display: flex;
-    align-items: center;
-    width: 80%;
-}
-.ProductList .Filters div{
-    border:1px solid #e82d96;
-    padding: 5px 10px;
-    border-radius: 50px;
-    font-size: 11px;
-    color: #e82d96;
-    white-space: nowrap;
-    transition: 0.2s;
-    cursor: pointer;
-    width: auto;
-    margin-right: 10px;
-}
-.Filters div:hover,.ProductList .Filters .ActiveFilter{
-    color: white;
-    background-color: #e82d96;
+.EmployeeList .Heads li:nth-last-child(1),.Element li:nth-last-child(1){
+    width: 30%;
 }
 .Head{
     display: flex;
@@ -96,7 +81,7 @@
 
 .Heads li{
     text-align: center;
-    width: 25%;
+    width: 20%;
     /* font-weight: 700; */
     text-transform: uppercase;
     color: #e82d96;
@@ -144,6 +129,6 @@
     height: 100%;
 }
 .Element ul > li{
-    width: 25%;
+    width: 20%;
     text-align: center;
 }
