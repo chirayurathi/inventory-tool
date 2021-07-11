@@ -197,13 +197,17 @@ class Content extends Component{
         }
     }
     addProducts = ()=>{
-
+        let product = {...this.state.form.product}
+        if(this.state.activeLink==="furniture"||this.state.activeLink==="other")
+            product.product_type=this.state.activeLink
         let xhr = new XMLHttpRequest()
         xhr.addEventListener("readystatechange",()=>{
             if(xhr.readyState===4){
                 // let response = JSON.parse(xhr.responseText)
                 if(xhr.status === 201){
-                    this.setState({formOf:null,form:this.form})
+                    let form = this.form
+                    form.product.product_type = (this.state.form.product.product_type==="furniture" || this.state.form.product.product_type==="other")?this.state.form.product.product_type:""
+                    this.setState({formOf:null,form:form})
                     this.getProducts()
                 }
             }
@@ -212,7 +216,7 @@ class Content extends Component{
     xhr.setRequestHeader('content-type','application/json')
     xhr.setRequestHeader('Authorization','Token '+localStorage.getItem('AuthToken'))
     xhr.withCredentials = true
-    xhr.send(JSON.stringify(this.state.form.product))
+    xhr.send(JSON.stringify(product))
     } 
     addUnit = ()=>{
 

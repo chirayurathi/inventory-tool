@@ -11,8 +11,9 @@ from inventory.models import Employee,Product
 django.setup()
 #write script
 def populate(eid,name,dept,branch,designation):
-    user = Employee.objects.get(pk=eid)
-    # user.employee_id = eid
+    # user = Employee.objects.get(pk=eid)
+    user = Employee()
+    user.employee_id = eid
     user.employee_name = name
     user.department = dept
     user.branch = branch
