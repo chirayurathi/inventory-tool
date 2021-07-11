@@ -44,4 +44,9 @@
 .SideNav .Active{
     background-color: #be1876;
 }
+a{
+    font-style: normal;
+    text-decoration: none;
+    color: inherit;
     
+}

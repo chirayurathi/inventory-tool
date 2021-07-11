@@ -8,7 +8,7 @@ const SideNav = (props) => {
             <li onClick={()=>{props.activeLinkChangeHandler("system")}} className={props.activeLink==="system"?Style.Active:null}><span></span> system </li>
             <li onClick={()=>{props.activeLinkChangeHandler("furniture")}} className={props.activeLink==="furniture"?Style.Active:null}><span></span> Furniture </li>
             <li onClick={()=>{props.activeLinkChangeHandler("other")}} className={props.activeLink==="other"?Style.Active:null}><span></span> Others </li>
-            <li>Export CSV </li>
+            <li><a href="http://127.0.0.1:8000/exportExcel/">Export CSV</a></li>
         </ul>
     )
 }
